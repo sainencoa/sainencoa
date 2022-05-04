@@ -1,0 +1,109 @@
+def pig_latin(word):
+    first_letter = word[0]
+    if first_letter in 'aeoiu':
+        pig_word = word + 'ay'
+    else:
+        pig_word = word[1:] + first_letter + 'ay'
+    return pig_word
+pig_latin('varamad')
+
+def lesser_of_two_evens(a,b): #Write a function that returns the lesser of two given numbers if both numbers are even, but returns the greater if one or both numbers are odd
+    if a % 2 == 0 and b % 2 == 0:
+        result = a,b
+    elif a % 2 != 0 or b % 2 != 0:
+        result = max(a,b)
+    return result
+
+lesser_of_two_evens(8,4)
+
+#MAKES TWENTY: Given two integers, return True if the sum of the integers is 20 or if one of the integers is 20. If not, return False
+def makes_twenty(n1,n2):
+    if n1 + n2 == 20: return True
+    elif n1 == 20 or n2 == 20: return True
+    else: return False
+makes_twenty(30,10)
+
+def makes_twenty(n1,n2):
+    return (n1+n2) == 20 or n1 == 20 or n2 == 20
+makes_twenty(11,2)
+
+def old_macdonald(name):
+    name = name[:3].capitalize() + name[3:].capitalize()
+    return name
+old_macdonald('macdonald')
+
+def old_macdonald(name):
+    name = name.capitalize()
+    cut_string = name[2:]
+    cut_string = cut_string.capitalize()
+    name = name[0:2] + cut_string
+    return name
+old_macdonald('macdonald')
+
+def master_yoda(text):
+    reverse_text = " ".join(reversed(text.split(' ')))
+    return reverse_text
+master_yoda('Hi mate how are ya')
+
+#Given a list of ints, return True if the array contains a 3 next to a 3 somewhere.
+def has_33(nums):
+    for i in nums:
+        if nums[i:i+2] == [3,3]:
+            return True
+        else: return False
+has_33([1, 2, 3])
+
+def paper_doll(text):
+    result = ''
+    for i in text:
+        result += i * 3
+    return result
+paper_doll('Hello')
+
+#BLACKJACK
+def blackjack(a,b,c):
+    sum_ = a + b + c
+    if a > 11 or b>11 or c> 11: 
+        return('invalid number')
+    if (sum_ >= 21) and a==11 or b == 11 or c == 11:
+        sum_ = sum_/2
+        if sum_ > 21:
+            return 'BUST'
+        else:
+            return sum_
+    elif sum_ >= 21: return'bust'
+    else: return sum_
+        
+blackjack(3,4,5)
+
+#SUMMER OF '69: Return the sum of the numbers in the array, except ignore sections of numbers starting with a 6 and extending to the next 9 (every 6 will be followed by at least one 9). Return 0 for no numbers.
+def summer_69(arr):
+    if 6 in arr:
+        sum_list = sum(arr) - sum(arr[arr.index(6):arr.index(9)+1])
+        return sum_list
+    else: return sum(arr)
+listoid = [2, 1, 45, 9, 11]
+summer_69(listoid)
+
+#SPY GAME: Write a function that takes in a list of integers and returns True if it contains 007 in order
+def spy_game(nums):
+    x = nums.index(0)
+    if nums[x+1] == 0:
+        if nums[x+2] == 7:
+            return True
+    else: return False
+spy_game([1,0,2,4,0,5,7])
+
+def count_primes(num):
+    primes=[]
+    num = range(2,num)
+    for i in num:
+        if i % i == 0:
+            print(i)
+            primes.append(i)
+            print(primes)
+        else: continue
+    return primes    
+        
+count_primes(100)        
+
