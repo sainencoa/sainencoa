@@ -1,0 +1,111 @@
+#what this lacks: scoreboard,
+#global variables:
+winero = 0
+no_sign = '-' #used to check if there`s free space in the row or column for X/O
+matrix = [['1','-','-','-'],
+['2','-','-','-'],
+['3','-','-','-']]
+column = [' ',1,2,3]
+
+def matrix_print():
+    print(*column)
+    print(*matrix[0])
+    print(*matrix[1])
+    print(*matrix[2])
+
+
+def continue_game(): #this asks the user if he wants to play and resets the matrix, calls gameon in case of yes
+    global winero  #resets the winer if the winer is reset game is on - this is the switch
+    global matrix
+    Y_N = input('Do you want to play again? Type Y if yes\n')
+    if Y_N == ('Y') or Y_N == ('y'):
+        winero = 0
+        matrix = [['1','-','-','-'],['2','-','-','-'],['3','-','-','-']]
+        gameon()
+    else: print('Thank you for playing!')
+        
+
+def winer():  #this sorts out the winer
+    global winero
+    if (matrix[0] == ['1','X','X','X'] or matrix[1] == ['2','X','X','X'] or matrix[2] == ['3','X','X','X'] or 
+matrix[0][1] == 'X' and matrix[1][1] == 'X' and matrix[2][1] == 'X' or
+matrix[0][2] == 'X' and matrix[1][2] == 'X' and matrix[2][2] == 'X' or 
+matrix[0][3] == 'X' and matrix[1][3] == 'X' and matrix[2][3] == 'X' or 
+matrix[0][1] == 'X' and matrix[1][2] == 'X' and matrix[2][3] == 'X' or 
+matrix[0][3] == 'X' and matrix[1][2] == 'X' and matrix[2][1] == 'X'):
+        winero = 1
+        print('\nX is the winner!\n')
+        continue_game()
+    elif (matrix[0] == ['1','O','O','O'] or matrix[1] == ['2','O','O','O'] or matrix[2] == ['3','O','O','O'] or 
+matrix[0][1] == 'O' and matrix[1][1] == 'O' and matrix[2][1] == 'O' or
+matrix[0][2] == 'O' and matrix[1][2] == 'O' and matrix[2][2] == 'O' or 
+matrix[0][3] == 'O' and matrix[1][3] == 'O' and matrix[2][3] == 'O' or 
+matrix[0][1] == 'O' and matrix[1][2] == 'O' and matrix[2][3] == 'O' or 
+matrix[0][3] == 'O' and matrix[1][2] == 'O' and matrix[2][1] == 'O'):
+        winero = 1
+        print('\nO is the winner!\n')
+        continue_game()
+    else: 
+        print('\nNext Round!\n')
+        winero = 0
+    return winero
+
+
+def O_choice(): #this asks the user to input O
+    choiceRow_O = input('Which Row do you want to put O in?\n \n')
+    while choiceRow_O.isdigit() == False:
+        choiceRow_O = input("That`s not a digit in range 1-3.\nWhich Row do you want to put O in?\n")
+    while int(choiceRow_O) not in range(1,4):
+        choiceRow_O = input("That`s not a digit in range 1-3.\nWhich Row do you want to put O in?\n")
+    while no_sign not in matrix[int(choiceRow_O)-1]:
+        choiceRow_O = input("\nThis row is full, chose another row.\n")
+    choiceRow_O = int(choiceRow_O) -1 #the substraction is needed as matrix[1] == 0 not 1 as user would enter.
+    print(*column)
+    print(*matrix[choiceRow_O])
+
+    choiceColumn_O = input('Which Column do you want to put O in?\n \n')
+    while choiceColumn_O.isdigit() == False:
+        choiceRow_O = input('That`s not a digit in range 1-3.\nWhich Column do you want to put O in?\n')
+    while int(choiceColumn_O) not in range(1,4):
+        choiceColumn_O = input("That`s not a digit in range 1-3.\nWhich Column do you want to put O in?\n")
+    while no_sign not in matrix[choiceRow_O][int(choiceColumn_O)]:
+        choiceColumn_O = input("\nThis index is ocupied, chose a free index.\n")
+    choiceColumn_O = int(choiceColumn_O)
+    matrix[choiceRow_O][choiceColumn_O] = 'O'
+    matrix_print()
+    
+def X_choice(): #this asks the user to input X
+    choiceRow_X = input('\nWhich Row do you want to put X in?\n')
+    while choiceRow_X.isdigit()  == False:
+        choiceRow_X = input("That`s not a digit in range 1-3.\nWhich Row do you want to put X in?\n")
+    while int(choiceRow_X) not in range(1,4):
+        choiceRow_X = input("That`s not a digit in range 1-3.\nWhich Row do you want to put X in?\n")
+    while no_sign not in matrix[int(choiceRow_X)-1]:
+        choiceRow_X = input("\nThis row is full, chose another row.\n")
+    choiceRow_X = int(choiceRow_X) -1
+    print(*column)
+    print(*matrix[choiceRow_X])
+
+    choiceColumn_X = input('Which Column do you want to put X in?\n \n')
+    while choiceColumn_X.isdigit() == False:
+        choiceColumn_X = input('That`s not a digit in range 1-3.\nWhich Column do you want to put X in?\n')
+    while int(choiceColumn_X) not in range(1,4):
+        choiceColumn_X = input("That`s not a digit in range 1-3.\nWhich Column do you want to put X in?\n")
+    while no_sign not in matrix[choiceRow_X][int(choiceColumn_X)]:
+        choiceColumn_X = input("\nThis index is ocupied, chose a free index.\n")
+    choiceColumn_X = int(choiceColumn_X)
+    matrix[choiceRow_X][choiceColumn_X] = 'X'
+    matrix_print()
+
+def gameon():
+    global winero
+    if input() == 'exit':
+        winero = 1
+        continue_game()
+    while winero == 0:
+        matrix_print()
+        X_choice()
+        O_choice()
+        winer()
+
+gameon()
