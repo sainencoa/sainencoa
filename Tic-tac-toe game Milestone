@@ -1,11 +1,15 @@
-#what this lacks: scoreboard,
+#what this lacks: scoreboard, exit option anywhere during the game
 #global variables:
-winero = 0
+winero = 0 #used to tell if there is a winer and if the game should ask the user if he`d like to continue or no
 no_sign = '-' #used to check if there`s free space in the row or column for X/O
 matrix = [['1','-','-','-'],
 ['2','-','-','-'],
 ['3','-','-','-']]
-column = [' ',1,2,3]
+column = [' ',1,2,3] #this is the upper side of the table, below, it`s the first row
+#  1 2 3
+#1 - - -
+#2 - - -
+#3 - - -
 
 def matrix_print():
     print(*column)
