@@ -1,17 +1,15 @@
 #what this lacks: scoreboard, exit option anywhere during the game
 #global variables:
-winero = 0 #used to tell if there is a winer and if the game should ask the user if he`d like to continue or no
+winero = 0
 no_sign = '-' #used to check if there`s free space in the row or column for X/O
 matrix = [['1','-','-','-'],
 ['2','-','-','-'],
 ['3','-','-','-']]
-column = [' ',1,2,3] #this is the upper side of the table, below, it`s the first row
-#  1 2 3
-#1 - - -
-#2 - - -
-#3 - - -
+column = [' ',1,2,3]
+from IPython.display import clear_output
 
 def matrix_print():
+    clear_output()
     print(*column)
     print(*matrix[0])
     print(*matrix[1])
@@ -26,11 +24,16 @@ def continue_game(): #this asks the user if he wants to play and resets the matr
         winero = 0
         matrix = [['1','-','-','-'],['2','-','-','-'],['3','-','-','-']]
         gameon()
-    else: print('Thank you for playing!')
+    else: 
+        print('Thank you for playing!')
         
 
 def winer():  #this sorts out the winer
     global winero
+    if no_sign not in matrix[0] and no_sign not in matrix[1] and no_sign not in matrix[2]: #full board check
+        winero = 1
+        print('\nIt`s a tie!\n')
+        continue_game()
     if (matrix[0] == ['1','X','X','X'] or matrix[1] == ['2','X','X','X'] or matrix[2] == ['3','X','X','X'] or 
 matrix[0][1] == 'X' and matrix[1][1] == 'X' and matrix[2][1] == 'X' or
 matrix[0][2] == 'X' and matrix[1][2] == 'X' and matrix[2][2] == 'X' or 
@@ -49,8 +52,7 @@ matrix[0][3] == 'O' and matrix[1][2] == 'O' and matrix[2][1] == 'O'):
         winero = 1
         print('\nO is the winner!\n')
         continue_game()
-    else: 
-        print('\nNext Round!\n')
+    else:
         winero = 0
     return winero
 
@@ -102,13 +104,10 @@ def X_choice(): #this asks the user to input X
     matrix_print()
 
 def gameon():
-    global winero
-    if input() == 'exit':
-        winero = 1
-        continue_game()
     while winero == 0:
         matrix_print()
         X_choice()
+        winer()
         O_choice()
         winer()
 
