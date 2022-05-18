@@ -1,0 +1,151 @@
+class Cylinder:
+    pi = 3.14
+    def __init__(self,height=1,radius=1):
+        pi = 3.14
+        self.height = height
+        self.radius = radius
+        self.volume = height * (radius * radius) * pi
+        self.area = 2* pi * radius * height  + 2* (pi * radius * radius)
+        
+    def volume(self,volume, new_height, new_radius):
+        new_height = height
+        new_radius = radius
+        self.volume = volume
+        self.volume = new_height * pi * (new_radius)**2
+     
+    def surface_area(self,area):
+        self.area = area
+        self.area = 2* pi * new_radius * new_height  + 2* (pi * new_radius * new_radius)
+        return self.area
+        
+        
+obiect = Cylinder(2,3)
+obiect.area
+
+
+obiect.volume
+
+class Cylinder:
+    pi = 3.14
+    def __init__(self,height=1,radius=1):
+        pi = 3.14
+        self.volume = height * (radius * radius) * pi
+        self.area = 2* pi * radius * height  + 2* (pi * radius * radius)
+        
+    def volume(self):
+        return new_height * pi * (new_radius)**2
+     
+    def surface_area(self):
+        return 2* pi * new_radius * new_height  + 2* (pi * new_radius * new_radius)
+        
+obiect = Cylinder(2,3)
+obiect.area
+
+
+obiect.volume
+
+class Circle:
+    pi = 3.14
+   # Circle gets instantiated with a radius (default is 1)
+    def __init__(self, radius=1):
+        self.radius = radius 
+        self.area = radius * radius * Circle.pi
+
+        
+    def getCircumference(self):
+        return self.radius*self.pi*2
+c = Circle(2)
+print('radius is: ',c.radius)
+print('Area is: ',c.area)
+print('Circumference is: ',c.getCircumference())
+
+
+class Line:
+    
+    def __init__(self,coordinate1,coordinate2):
+        self.coordinate1 = coordinate1
+        self.coordinate2 = coordinate2
+
+    def distance(self):
+        x1,y1 = coordinate1
+        x2,y2 = coordinate2
+        return ((x2-x1)**2 + (y2-y1)**2)**0.5
+    
+    def slope(self):
+        x1,y1 = coordinate1
+        x2,y2 = coordinate2
+        return (y2-y1)/(x2-x1)
+
+coordinate1 = (3,2)
+coordinate2 = (8,10)
+
+li = Line(coordinate1,coordinate2)
+
+li.slope()
+
+class book:
+    def __init__(self, title, author, pages):
+        self.title = title
+        self.author = author
+        self.pages = pages
+    def __str__(self):
+        return f'this book is called {self.title} by {self.author}'
+    def __len__(self):
+        return self.pages
+    def __del__(self):
+        print('we`ve deleted this book')
+b = book('jorge going food food','Ioan V',243)
+print(b)
+len(b)
+
+
+del b
+
+class Account:
+    def __init__(self,owner,balance):
+        self.owner = owner
+        self.balance = balance
+    def TopUp(self,deposit):
+        self.balance = self.balance + deposit
+        return f'you`ve just deposited {deposit}, your new balance is {self.balance}'
+    def Withdraw(self,withdraw):
+        if (self.balance - withdraw) >= 0:
+            self.balance = self.balance - withdraw
+            return f'you`ve just witdrew {withdraw}, your new balance is {self.balance}'
+        else:
+            return 'this is over your available balance'
+
+    def __str__(self):
+        return f'this is the account of {self.owner} who has a balance of {self.balance}'
+
+acct1 = Account('Jose',100)
+# 2. Print the object
+print(acct1)
+# 3. Show the account owner attribute
+acct1.owner
+# 4. Show the account balance attribute
+acct1.balance
+
+# 5. Make a series of deposits and withdrawals
+acct1.TopUp(50)
+acct1.Withdraw(75)
+# 6. Make a withdrawal that exceeds the available balance
+acct1.Withdraw(500)
+
+acct1.Withdraw(75)
+
+acct1.TopUp(50)
+
+def trying():
+    while True:
+        try:
+            x = int(input('hit me wiht a number mate'))
+        except: 
+            print('that`s not a number')
+        else:
+            print('that`s a number')
+            break
+        finally:
+            print('I always run')
+trying()
+
